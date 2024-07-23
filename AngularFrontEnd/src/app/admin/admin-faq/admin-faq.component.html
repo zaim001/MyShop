@@ -1,0 +1,55 @@
+<h3>Add New Product</h3>
+<form (ngSubmit)="onAddFaq()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input [(ngModel)]="newFaq.question" name="question" id="question" class="form-control" placeholder="Question" required>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <input [(ngModel)]="newFaq.answer" name="answer" id="answer" class="form-control" placeholder="Answer">
+  </div>
+  <button type="submit" class="btn btn-primary">Add Faq</button>
+</form>
+
+<div class="container-fluid">
+    <h3 class="text-center">Faqs</h3>
+    <table class="table table-striped table-bordered table-hover mx-auto">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Question</th>
+          <th scope="col">Answer</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (faq of faqs; track faq.id) {
+        <tr>
+          <th scope="row">{{faq.id}}</th>
+          <td>
+            @if (editingFaq === faq.id) {
+              <input [(ngModel)]="faq.question" (blur)="OnUpdateFaq(faq)" (keyup.enter)="OnUpdateFaq(faq)">
+            } @else {
+              {{faq.question}}
+            }
+          </td>
+          <td>
+            @if (editingFaq === faq.id) {
+              <input [(ngModel)]="faq.answer" (blur)="OnUpdateFaq(faq)" (keyup.enter)="OnUpdateFaq(faq)">
+            } @else {
+              {{faq.answer}}
+            }
+          </td>
+          <td>
+            @if (editingFaq === faq.id) {
+              <button class="btn btn-success btn-sm" *ngIf="faq.id" (click)="OnUpdateFaq(faq)">Save</button>
+            } @else {
+              <button class="btn btn-primary btn-sm" *ngIf="faq.id" (click)="startEditing(faq.id)">Edit </button>&nbsp;
+            }
+            <button class="btn btn-danger btn-sm" *ngIf="faq.id" (click)="OnDeleteFaq(faq.id)">Delete</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+

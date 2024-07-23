@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto px-0">
+      <div id="sidebar" class="collapse collapse-horizontal show border-end">
+        <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+          <nav class="nav flex-column nav-pills">
+            <a class="nav-link active" routerLink="dashboard" routerLinkActive="active">
+              <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <a class="nav-link" routerLink="products" routerLinkActive="active">
+              <i class="fas fa-boxes"></i> Products
+            </a>
+            <a class="nav-link" routerLink="categories" routerLinkActive="active">
+              <i class="fas fa-list"></i> Categories
+            </a>
+            <a class="nav-link" routerLink="faqs" routerLinkActive="active">
+              <i class="fas fa-question-circle"></i> Faqs
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <main class="col ps-md-2 pt-2">
+      <div class="row">
+        <div class="col-12">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

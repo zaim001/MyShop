@@ -1,0 +1,68 @@
+#tempaltemo_footer {
+    background-color: #212934;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+#tempaltemo_footer .logo {
+    font-weight: 500;
+    color: #59ab6e;
+}
+
+#tempaltemo_footer ul.footer-link-list li {
+    padding-top: 10px;
+}
+
+#tempaltemo_footer ul.footer-link-list li a {
+    color: #cfd6e1;
+    text-decoration: none;
+}
+
+#tempaltemo_footer ul.footer-link-list li a:hover {
+    color: #68bb7d;
+}
+
+#tempaltemo_footer .footer-icons li {
+    width: 2.6em;
+    height: 2.6em;
+    line-height: 2.6em;
+    border: 1px solid #e8e8e8;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#tempaltemo_footer .footer-icons li a {
+    color: #dcdde1;
+    text-decoration: none;
+}
+
+#tempaltemo_footer .footer-icons li:hover {
+    background-color: #cfd6e1;
+    transition: 0.5s;
+}
+
+#tempaltemo_footer .footer-icons li:hover i {
+    color: #212934;
+    transition: 0.5s;
+}
+
+#tempaltemo_footer .input-group-text {
+    background-color: #59ab6e;
+    border: none;
+    color: #fff;
+}
+
+#tempaltemo_footer .input-group-text:hover {
+    background-color: #68bb7d;
+}
+
+#tempaltemo_footer .bg-black {
+    background-color: #1d242d;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#tempaltemo_footer .bg-black p {
+    color: #cfd6e1;
+    margin-bottom: 0;
+}
