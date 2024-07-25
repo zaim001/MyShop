@@ -6,7 +6,7 @@ import { Faq } from '../../../models/faq';
 @Injectable({
   providedIn: 'root'
 })
-export class FaqServiceService {
+export class FaqService {
 
   constructor(private http : HttpClient) { }
 

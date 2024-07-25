@@ -24,6 +24,7 @@ public class SecurityConfig {
         	//.csrf().disable()
             .authorizeHttpRequests(authorize -> authorize
             			.requestMatchers("/api/visitor/**").permitAll()
+            			
                         .anyRequest().authenticated()
             )
             .oauth2ResourceServer((oauth2) -> oauth2.jwt(

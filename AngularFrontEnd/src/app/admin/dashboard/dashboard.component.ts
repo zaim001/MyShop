@@ -6,11 +6,13 @@ import { ProductsComponent } from '../products/products.component';
 import { Product } from '../../models/product';
 import { Category } from '../../models/category';
 import { RouterModule } from '@angular/router';
-import { ProductServiceService } from '../../shared/service/AdminServices/product-service.service';
-import { CategoryServiceService } from '../../shared/service/AdminServices/category-service.service';
+
 import { AdminFaqComponent } from '../admin-faq/admin-faq.component';
-import { FaqServiceService } from '../../shared/service/AdminServices/faq-service.service';
+
 import { Faq } from '../../models/faq';
+import { ProductService } from '../../shared/service/AdminServices/product.service';
+import { CategoryService } from '../../shared/service/AdminServices/category.service';
+import { FaqService } from '../../shared/service/AdminServices/faq.service';
 
 
 @Component({
@@ -26,7 +28,7 @@ export class DashboardComponent implements OnInit {
   categories: Category[] = [];
   faqs: Faq[] = [];
 
-  constructor(private productService: ProductServiceService, private categoryService: CategoryServiceService, private faqService : FaqServiceService) {}
+  constructor(private productService: ProductService, private categoryService: CategoryService, private faqService : FaqService) {}
 
 
   ngOnInit() {
@@ -43,7 +45,6 @@ export class DashboardComponent implements OnInit {
         ...product,
         categoryname: this.getCategoryName(product.categoryId)
       }));
-      console.log("products : ", this.products);
     });
   }
 

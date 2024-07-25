@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Product } from '../models/product';
-import { ProductServiceService } from '../shared/service/AdminServices/product-service.service';
 import { FormsModule } from '@angular/forms';
+import { ProductService } from '../shared/service/AdminServices/product.service';
 
 @Component({
   selector: 'app-search-input',
@@ -13,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class SearchInputComponent {
 
 
-  constructor(private productService: ProductServiceService) {}
+  constructor(private productService: ProductService) {}
 
   @Output() search = new EventEmitter<string>();
   searchTerm: string = '';

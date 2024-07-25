@@ -9,6 +9,7 @@ import { ProductsComponent } from './admin/products/products.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { AdminFaqComponent } from './admin/admin-faq/admin-faq.component';
 import { ShopComponent } from './shop/shop.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 
@@ -30,6 +31,9 @@ export const routes: Routes = [
     {
         path : "shop",
         component : ShopComponent,
+    },
+    {   path: 'product/:id',
+        component: ProductDetailComponent 
     },
     {
         path: 'admin',

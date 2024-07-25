@@ -42,7 +42,7 @@ public class AdminCategoryController {
 	   	}
 	    
 	    @GetMapping("cats")
-	    @PreAuthorize("hasAuthority('ROLE_admin')")
+	  //  @PreAuthorize("hasAuthority('ROLE_admin')")
 	   	public ResponseEntity<List<Category>> getAllCategories(){
 	   		return ResponseEntity.ok(categoryservice.getAllCategories());
 	   	}

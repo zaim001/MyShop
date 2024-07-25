@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import com.ecom.app.dto.ProductDto;
 import com.ecom.app.model.Category;
@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
         dto.setCategoryId(product.getCategory().getId());
         dto.setCategoryName(product.getCategory().getName());
         return dto;
-<<<<<<< HEAD:SpringBackEnd/src/main/java/com/ecom/app/service/admin/product/ProductServiceImpl.java
+
     }
     
     @Override
@@ -85,8 +85,7 @@ public class ProductServiceImpl implements ProductService {
     	List<Product> products = productRepo.findAllByNameContaining(name);
     	return products.stream().map(this::convertToDto).collect(Collectors.toList());
     	
-=======
->>>>>>> 5868c527 (category mod):src/main/java/com/ecom/app/service/admin/product/ProductServiceImpl.java
+
     }
 	
 

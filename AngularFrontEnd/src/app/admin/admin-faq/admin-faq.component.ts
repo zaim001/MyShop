@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Faq } from '../../models/faq';
-import { FaqServiceService } from '../../shared/service/AdminServices/faq-service.service';
+
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FaqService } from '../../shared/service/AdminServices/faq.service';
 
 @Component({
   selector: 'app-admin-faq',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AdminFaqComponent {
 
-  constructor(private faqService : FaqServiceService){
+  constructor(private faqService : FaqService){
     
   }
 

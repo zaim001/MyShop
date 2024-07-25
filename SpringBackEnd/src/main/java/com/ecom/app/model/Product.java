@@ -11,11 +11,7 @@ import jakarta.persistence.*;
 @Table(name="product")
 public class Product {
 
-<<<<<<< HEAD:SpringBackEnd/src/main/java/com/ecom/app/model/Product.java
-=======
 
-
->>>>>>> 5868c527 (category mod):src/main/java/com/ecom/app/model/Product.java
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

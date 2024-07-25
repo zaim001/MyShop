@@ -1,14 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit} from '@angular/core';
-import { FaqServiceService } from '../shared/service/AdminServices/faq-service.service';
+
 import { Faq } from '../models/faq';
 import { FaqVisitorService } from '../shared/service/VisitorServices/faq-visitor.service';
 
-interface AccordionGroup {
-  title: string;
-  content: string;
-  expanded: boolean;
-}
+
 
 @Component({
   selector: 'app-faq',

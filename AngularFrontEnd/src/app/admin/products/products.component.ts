@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../models/product';
 import { Category } from '../../models/category';
-import { ProductServiceService } from '../../shared/service/AdminServices/product-service.service';
 import { FormsModule } from '@angular/forms';
-import { AdminComponent } from '../admin.component';
-import { CategoryServiceService } from '../../shared/service/AdminServices/category-service.service';
 import { CommonModule } from '@angular/common';
 import { SearchInputComponent } from '../../search-input/search-input.component';
+import { ProductService } from '../../shared/service/AdminServices/product.service';
+import { CategoryService } from '../../shared/service/AdminServices/category.service';
 
 @Component({
   selector: 'app-products',
@@ -16,14 +15,12 @@ import { SearchInputComponent } from '../../search-input/search-input.component'
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit{
-  @Input() products: Product[] = [];
-  @Input() categories: Category[] = [];
+  products: Product[] = [];
+  categories: Category[] = [];
   editingProduct: number | null = null;
-  filteredProducts: Product[] = [];
-  searchTerm: string = '';
 
 
-  constructor(private productService :ProductServiceService, private categoryService:CategoryServiceService){  }
+  constructor(private productService :ProductService, private categoryService:CategoryService){  }
 
   newProduct: Product = {
     name: '',
@@ -32,31 +29,33 @@ export class ProductsComponent implements OnInit{
     rating: 0,
     product_image: '',
     categoryId: 0,
-    categoryname: '',
-   
+    categoryname: ''
   };
 
     ngOnInit(){
-      this.loadCategories();
       this.loadProducts()
+      this.loadCategories();
     }
 
     onAddProduct() {
       this.productService.createProduct(this.newProduct).subscribe(() => {
         this.loadProducts()
-        this. newProduct = {
-          name: '',
-          description: '',
-          price: 0,
-          rating: 0,
-          product_image: '',
-          categoryId: 0,
-          categoryname: '',
-        }
+        this.resetNewProduct()
       });
     }
 
-      
+    resetNewProduct() {
+      this.newProduct = {
+        name: '',
+        description: '',
+        price: 0,
+        rating: 0,
+        product_image: '',
+        categoryId: 0,
+        categoryname: ''
+      };
+    }
+  
     loadCategories() {
       this.categoryService.getCategories().subscribe(data => {
         this.categories = data;
@@ -66,13 +65,11 @@ export class ProductsComponent implements OnInit{
     loadProducts() {
       this.productService.getProducts().subscribe(data => {
         this.products = data;
-        this.filterProducts();
         // Map category names to products
         this.products = this.products.map(product => ({
           ...product,
           categoryname: this.getCategoryName(product.categoryId)
         }));
-        console.log("products : ", this.products);
       });
     }
   
@@ -108,20 +105,6 @@ export class ProductsComponent implements OnInit{
         });
       }
     }
-    onSearch(searchTerm: string) {
-      this.searchTerm = searchTerm;
-      this.filterProducts();
-    }
-  
-    filterProducts() {
-      if (this.searchTerm) {
-        this.filteredProducts = this.products.filter(product =>
-          product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          product.description.toLowerCase().includes(this.searchTerm.toLowerCase())
-        );
-      } else {
-        this.filteredProducts = [...this.products];
-      }
-    }
+   
 
 }

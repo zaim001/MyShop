@@ -2,8 +2,9 @@ import { Component, Input, OnInit} from '@angular/core';
 import { Category } from '../../models/category';
 import { FormsModule } from '@angular/forms';
 import { AdminComponent } from '../admin.component';
-import { CategoryServiceService } from '../../shared/service/AdminServices/category-service.service';
+
 import { CommonModule } from '@angular/common';
+import { CategoryService } from '../../shared/service/AdminServices/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -17,9 +18,8 @@ export class CategoriesComponent implements OnInit{
   categories: Category[] = [];
   editingCat: number | null = null;
 
-  
 
-  constructor(private categoryService : CategoryServiceService){}
+  constructor(private categoryService : CategoryService){}
 
 
   newCategory: Category = {
@@ -27,15 +27,17 @@ export class CategoriesComponent implements OnInit{
     description : '',
     cat_image :'',
   };
+  
+  ngOnInit(){
+    this.loadCategories()
+  }
 
   loadCategories() {
     this.categoryService.getCategories().subscribe(data => {
       this.categories = data;
     });
   }
-    ngOnInit(){
-      this.loadCategories()
-    }
+ 
   onAddCategory() {
     this.categoryService.createCategory(this.newCategory).subscribe(() => {
       this.loadCategories();
@@ -50,11 +52,7 @@ export class CategoriesComponent implements OnInit{
   OnDeleteCategory(id: number){
     this.categoryService.deleteCategory(id).subscribe(
       () => {
-        console.log('Category deleted successfully');
         this.loadCategories();
-      },
-      error => {
-        console.error('Error deleting Category:', error);
       }
     )
   }

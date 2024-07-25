@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { Category } from '../models/category';
-import { ProductServiceService } from '../shared/service/AdminServices/product-service.service';
-import { CategoryServiceService } from '../shared/service/AdminServices/category-service.service';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { FormsModule } from '@angular/forms';
@@ -23,11 +21,13 @@ export class ShopComponent{
   filteredProducts: Product[] = [];
   searchTerm: string = '';
   selectedPriceFilter: string = 'all';
+  product: Product | undefined;
  
 
   constructor(
     private productService: ProductVisitorService,
     private categoryService: CategoryVisitorService,
+    
   ) {}
 
   ngOnInit() {
@@ -53,6 +53,7 @@ export class ShopComponent{
       
     });
   }
+
   onSearch(searchTerm: string) {
     this.searchTerm = searchTerm;
     this.filterProducts();
