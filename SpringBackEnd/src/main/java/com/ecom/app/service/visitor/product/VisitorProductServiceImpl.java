@@ -37,6 +37,4 @@ public class VisitorProductServiceImpl implements VisitorProductService{
 	        dto.setCategoryName(product.getCategory().getName());
 	        return dto;
 	    }
-	
-
 }

@@ -29,7 +29,7 @@ public class VisitorProductController {
 		return ResponseEntity.ok(vps.getAllProducts());
 	}
 	@GetMapping("/products/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long id) {
         ProductDto productDto = vps.getProductById(id);
         return ResponseEntity.ok(productDto);
     }
