@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Faq } from '../../models/faq';
-
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FaqService } from '../../shared/service/AdminServices/faq.service';
@@ -12,26 +11,25 @@ import { FaqService } from '../../shared/service/AdminServices/faq.service';
   templateUrl: './admin-faq.component.html',
   styleUrl: './admin-faq.component.scss'
 })
-export class AdminFaqComponent {
-
-  constructor(private faqService : FaqService){
-    
-  }
-
-  ngOnInit(): void {
-    this.loadFaqs();
-  }
-
+export class AdminFaqComponent implements OnInit {
+  
   faqs : Faq[] = [];
   editingFaq: number | null = null;
 
 
+  constructor(private faqService : FaqService){}
+    
+  ngOnInit(){
+    this.loadFaqs();
+  }
+  
 
   loadFaqs(){
     this.faqService.getFaqs().subscribe(data => {
       this.faqs = data;
     });
   }
+ 
 
   newFaq: Faq = {
     question : '',

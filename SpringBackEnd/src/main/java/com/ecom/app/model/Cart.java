@@ -2,6 +2,8 @@ package com.ecom.app.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +21,8 @@ public class Cart {
 	
     private String userId;
     
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", orphanRemoval = true)
+    @JsonManagedReference
     private List<Product> products;
     
     public Long getId() {

@@ -26,7 +26,12 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product createProduct(ProductDto productdto) {
 		
-		Category category = categoryRepo.findById(productdto.getCategoryId()).orElseThrow(() -> new RuntimeException("Category not found"));;
+		Category category = categoryRepo.findById(productdto.getCategoryId()) .orElseGet(() -> {
+            Category newCategory = new Category();
+            newCategory.setId(productdto.getCategoryId());
+            newCategory.setName(productdto.getCategoryName());
+            return categoryRepo.save(newCategory);
+        });
 		
 		Product product = new Product();
 		

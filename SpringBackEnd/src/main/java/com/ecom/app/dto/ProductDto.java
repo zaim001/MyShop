@@ -20,6 +20,7 @@ public class ProductDto {
 	private Long categoryId;
 	
 	private String categoryName;
+	
 
 
 	public Long getId() {

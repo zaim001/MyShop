@@ -7,6 +7,8 @@ import { SearchInputComponent } from '../search-input/search-input.component';
 import { FormsModule } from '@angular/forms';
 import { ProductVisitorService } from '../shared/service/VisitorServices/product-visitor.service';
 import { CategoryVisitorService } from '../shared/service/VisitorServices/category-visitor.service';
+import { CartCustomerService } from '../shared/service/CustomerServices/cart-customer.service';
+import { Cart } from '../models/cart';
 
 @Component({
   selector: 'app-shop',
@@ -22,12 +24,13 @@ export class ShopComponent{
   searchTerm: string = '';
   selectedPriceFilter: string = 'all';
   product: Product | undefined;
+  
  
 
   constructor(
     private productService: ProductVisitorService,
     private categoryService: CategoryVisitorService,
-    
+    private cartService: CartCustomerService,
   ) {}
 
   ngOnInit() {

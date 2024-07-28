@@ -3,6 +3,7 @@ package com.ecom.app.model;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -25,6 +26,10 @@ public class Product {
     private Double rating;
     @Column(name = "product_image")
     private String product_image;
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    @JsonBackReference
+    private Cart cart;
     
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -88,6 +93,14 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 	
 
