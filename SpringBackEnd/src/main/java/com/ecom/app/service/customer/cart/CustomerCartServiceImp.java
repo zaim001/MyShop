@@ -1,8 +1,9 @@
-package com.ecom.app.service.customer.cart;
+	package com.ecom.app.service.customer.cart;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.el.stream.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +24,6 @@ public class CustomerCartServiceImp implements CustomerCartService{
 	   @Autowired
 	    private ProductRepo productRepo;
 	   
-	   @Autowired
-	    private CategoryRepo categoryRepo;
-	   
-	
 
 	    @Override
 	    public Cart getCart(String userId) {
@@ -35,58 +32,45 @@ public class CustomerCartServiceImp implements CustomerCartService{
 
 	    @Override
 	    public Cart addToCart(String userId, ProductDto productDto) {
-	        Cart cart = cartRepo.findByUserId(userId).orElseGet(() -> {
-	            Cart newCart = new Cart();
-	            newCart.setUserId(userId);
-	            return cartRepo.save(newCart);
-	        });
-
+	        Cart cart = cartRepo.findByUserId(userId)
+	            .orElseGet(() -> {
+	                Cart newCart = new Cart();
+	                newCart.setUserId(userId);
+	                newCart.setProducts(new ArrayList<>()); // Initialize the products list
+	                return cartRepo.save(newCart);
+	            });
 	        
-	        Product product = convertToProduct(productDto);
-
-	      
-	        product.setCart(cart);
-
-	      
+	        // If the cart exists but products is null, initialize it
+	        if (cart.getProducts() == null) {
+	            cart.setProducts(new ArrayList<>());
+	        }
+	        
+	        // Fetch the existing product by ID
+	        Product product = productRepo.findById(productDto.getId())
+	            .orElseThrow(() -> new IllegalArgumentException("Product not found with ID: " + productDto.getId()));
+	        
 	        cart.getProducts().add(product);
-
-	      
-	        productRepo.save(product);
-
-	        
+	        product.setCart(cart);
+	     
 	        return cartRepo.save(cart);
 	    }
 
-	    private Product convertToProduct(ProductDto productDto) {
-	        Product product = new Product();
-	        product.setName(productDto.getName());
-	        product.setDescription(productDto.getDescription());
-	        product.setPrice(productDto.getPrice());
-	        product.setRating(productDto.getRating());
-	        product.setProduct_image(productDto.getProduct_image());
 
-	        // Fetch or create the category
-	        Category category = categoryRepo.findById(productDto.getCategoryId()).orElseGet(() -> {
-	            Category newCategory = new Category();
-	            newCategory.setId(productDto.getCategoryId());
-	            newCategory.setName(productDto.getCategoryName());
-	            return categoryRepo.save(newCategory);
-	        });
-
-	        // Set the category to the product
-	        product.setCategory(category);
-
-	        return product;
-	    }
 
 	    @Override
 	    public void removeFromCart(String userId, Long productId) {
 	        Cart cart = cartRepo.findByUserId(userId).orElseThrow(() -> new RuntimeException("Cart not found"));
-	        cart.getProducts().removeIf(product -> product.getId().equals(productId));
-	        cartRepo.save(cart);
-	        productRepo.deleteById(productId);
+	        Product product = productRepo.findById(productId).orElseThrow(() -> new IllegalArgumentException("Product not found with ID: " + productId));
+	        
+	        // Remove the product from the cart
+	        cart.getProducts().removeIf(p -> p.getId().equals(productId));
+	        
+	        // Disassociate the product from the cart
+	        product.setCart(null);
+	        productRepo.save(product); // Update the product to remove the cart association
+	        
+	        cartRepo.save(cart); // Update the cart
 	    }
-
 	    @Override
 	    public Cart updateCart(String userId, List<Product> products) {
 	        Cart cart = cartRepo.findByUserId(userId).orElseThrow(() -> new RuntimeException("Cart not found"));

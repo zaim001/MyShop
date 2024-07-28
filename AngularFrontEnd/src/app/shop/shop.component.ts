@@ -84,7 +84,6 @@ export class ShopComponent{
 }
  
 
-
   isCategoryCollapsed = false;
   isBrandingCollapsed = false;
   isFilterPriceCollapsed = false;
