@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cart } from '../../models/cart';
 import { CartCustomerService } from '../../shared/service/CustomerServices/cart-customer.service';
 import { CommonModule } from '@angular/common';
@@ -10,27 +10,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent implements OnInit{
+export class CartComponent {
 
-  cart: Cart | undefined;
+  @Input() cart: Cart | undefined;
+  @Output() removeProductFromCart = new EventEmitter<number>();
 
-  constructor(private cartService: CartCustomerService) { }
+  onRemoveProduct(productId: number) {
+    this.removeProductFromCart.emit(productId);
+  }
 
-  ngOnInit(): void {
-   this.getProductsCart();
-   
-}
-getProductsCart(){
-  this.cartService.getCart().subscribe((cart) => {
-    this.cart = cart;
-  });
-}
-removeProductFromCart(productId : number){
-  this.cartService.deleteProductCart(productId).subscribe(
-    () => this.getProductsCart()
-  )
-}
-  
 }
 
 
