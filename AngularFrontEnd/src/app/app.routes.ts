@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './shared/layout/page-not-found/page-not-found.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -9,7 +9,7 @@ import { ProductsComponent } from './admin/products/products.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { AdminFaqComponent } from './admin/admin-faq/admin-faq.component';
 import { ShopComponent } from './shop/shop.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ProfileComponent } from './customer/profile/profile.component';
 import { OrderHistoryComponent } from './customer/order-history/order-history.component';

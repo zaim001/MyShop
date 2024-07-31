@@ -1,0 +1,21 @@
+<section class="full-width-section py-5 bg-gray">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1"><b>Categories of The Month</b></h1>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+              when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        @for (category of categories; track category.id) {
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <img [src]="category.cat_image" class="rounded-circle img-fluid border">
+            <h5 class="text-center mt-3 mb-3">{{category.name}}</h5>
+            <p class="text-center"><a class="btn btn-success" routerLink="/shop">Go Shop</a></p>
+        </div>
+    }
+    </div>
+  </section>

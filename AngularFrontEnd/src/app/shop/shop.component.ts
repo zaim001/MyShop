@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { Category } from '../models/category';
-import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductCardComponent } from '../product/product-card/product-card.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { FormsModule } from '@angular/forms';
 import { ProductVisitorService } from '../shared/service/VisitorServices/product-visitor.service';
@@ -83,19 +83,10 @@ export class ShopComponent{
     this.filteredProducts = filtered;
 }
  
-
   isCategoryCollapsed = false;
-  isBrandingCollapsed = false;
-  isFilterPriceCollapsed = false;
 
   toggleCategoryCollapse() {
     this.isCategoryCollapsed = !this.isCategoryCollapsed;
-  }
-  toggleBrandingCollapse() {
-    this.isBrandingCollapsed = !this.isBrandingCollapsed;
-  }
-  toggleFilterPriceCollapse() {
-    this.isFilterPriceCollapsed = !this.isFilterPriceCollapsed;
   }
 
 }

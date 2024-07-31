@@ -47,7 +47,6 @@ export class DashboardComponent implements OnInit {
       }));
     });
   }
-
   getCategoryName(categoryId: number): string {
     const category = this.categories.find(c => c.id === categoryId);
     return category ? category.name : 'Unknown';
@@ -58,7 +57,6 @@ export class DashboardComponent implements OnInit {
       this.categories = data;
     });
   }
-  
   loadFaqs(){
     this.faqService.getFaqs().subscribe(data => {
       this.faqs = data;
@@ -66,14 +64,12 @@ export class DashboardComponent implements OnInit {
   }
   OnDeleteCategory(id : number){
     this.categoryService.deleteCategory(id).subscribe(
-      () => { console.log("Deleted Category Successfully"); this.loadCategories()},
-      error => { console.error("Deleting Category Has Failed", error)}
+      () => {this.loadCategories()},
     )
   }
   OnDeleteProduct(id : number){
     this.productService.deleteProduct(id).subscribe(
-      () => { console.log("Product Deleted Successfully"); this.loadProducts()},
-      error => { console.error("Deleting Product Has Failed", error)}
+      () => {this.loadProducts()},
     )
   }
   

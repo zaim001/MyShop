@@ -74,10 +74,6 @@ export class AdminFaqComponent implements OnInit {
           }
           this.editingFaq = null;
         },
-        error: (error) => {
-          console.error('Error updating FAQ:', error);
-          // Optionally, you can show an error message to the user
-        }
       });
     }
   }

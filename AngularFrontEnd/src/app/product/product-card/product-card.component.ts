@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { Product } from '../models/product';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { Cart } from '../models/cart';
-import { CartCustomerService } from '../shared/service/CustomerServices/cart-customer.service';
+import { Cart } from '../../models/cart';
+import { CartCustomerService } from '../../shared/service/CustomerServices/cart-customer.service';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-product-card',
@@ -15,15 +16,22 @@ import { CartCustomerService } from '../shared/service/CustomerServices/cart-cus
 export class ProductCardComponent {
   @Input() product! : Product;
   cart: Cart | null = null;
+ 
+ 
 
-  constructor(private cartService: CartCustomerService){}
+  constructor(private cartService: CartCustomerService,private keycloakService: KeycloakService){}
 
+ 
   addProductToCart(){
-    if(typeof(this.product) != "undefined"){
+    if(typeof(this.product) != "undefined" && this.hasRole('customer')){
       this.cartService.addToCart(this.product).subscribe(
         (data) => {this.cart = data},
       )
     }
+    else if (!this.hasRole('customer')) { alert("You have to login to add product to your cart")}
+  }
+  hasRole(role: string): boolean {
+    return this.keycloakService.getUserRoles().includes(role);
   }
 
   get fullStars(): number[] {

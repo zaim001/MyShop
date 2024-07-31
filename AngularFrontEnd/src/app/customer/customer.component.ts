@@ -13,6 +13,7 @@ import { CartComponent } from "./cart/cart.component";
 })
 export class CustomerComponent implements OnInit {
   cart: Cart | undefined;
+  
 
   constructor(private cartService:CartCustomerService){}
 
@@ -31,6 +32,7 @@ export class CustomerComponent implements OnInit {
     () => this.getProductsCart()
   )
 }
+
 
  
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../models/product';
-import { ProductVisitorService } from '../shared/service/VisitorServices/product-visitor.service';
+import { Product } from '../../models/product';
+import { ProductVisitorService } from '../../shared/service/VisitorServices/product-visitor.service';
 import { ActivatedRoute } from '@angular/router';
-import { Category } from '../models/category';
-import { CategoryVisitorService } from '../shared/service/VisitorServices/category-visitor.service';
+import { Category } from '../../models/category';
+import { CategoryVisitorService } from '../../shared/service/VisitorServices/category-visitor.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

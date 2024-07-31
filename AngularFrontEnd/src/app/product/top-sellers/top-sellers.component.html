@@ -1,0 +1,30 @@
+<section>
+    <h1 class="h1"><b>Top Sellers</b></h1>
+    <div class="row">
+        @for (product of products; track product.id) {
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                <div class="product-image">
+                    <a class="image">
+                        <img class="pic-1" [src]="product.product_image">
+                    </a>
+                    <span class="product-discount-label">-33%</span>
+                   
+                </div>
+                <div class="product-content">
+                    <ul class="rating">
+                        <li class="fas fa-star"></li>
+                        <li class="fas fa-star"></li>
+                        <li class="fas fa-star"></li>
+                        <li class="far fa-star"></li>
+                        <li class="far fa-star"></li>
+                    </ul>
+                    <h3 class="title"><a href="#">{{product.name}}</a></h3>
+                    <div class="price"><span>$90.00</span> {{product.price}}</div>
+                    <a class="add-to-cart" routerLink="/shop">Go Shop</a>
+                </div>
+                </div>
+                </div>
+        }
+    </div>
+</section>

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { HeroComponent } from '../hero/hero.component';
-import { CatListComponent } from '../cat-list/cat-list.component';
-import { TopSellersComponent } from '../top-sellers/top-sellers.component';
-import { InfosComponent } from '../infos/infos.component';
-import { FaqComponent } from '../faq/faq.component';
+import { HeroComponent } from '../pages/hero/hero.component';
+import { CatListComponent } from '../pages/cat-list/cat-list.component';
+import { TopSellersComponent } from '../product/top-sellers/top-sellers.component';
+import { InfosComponent } from '../pages/infos/infos.component';
+import { FaqComponent } from '../pages/faq/faq.component';
+
 
 @Component({
   selector: 'app-home',
