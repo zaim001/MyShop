@@ -19,8 +19,11 @@ public class CustomJwtConverter implements Converter<Jwt, CustomJwt> {
 
         // You can also map other information from the Jwt to the custom token
         var customJwt = new CustomJwt(jwt, authorities);
+        customJwt.setUsername(jwt.getClaimAsString("preferred_username"));
         customJwt.setFirstname(jwt.getClaimAsString("given_name"));
         customJwt.setLastname(jwt.getClaimAsString("family_name"));
+        customJwt.setEmail(jwt.getClaimAsString("email"));
+        customJwt.setVerified(jwt.getClaimAsString("email_verified"));
         return customJwt;
     }
 

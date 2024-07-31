@@ -12,12 +12,26 @@ import { CommonModule } from '@angular/common';
 })
 export class CartComponent {
 
-  @Input() cart: Cart | undefined;
-  @Output() removeProductFromCart = new EventEmitter<number>();
+  cart: Cart | undefined;
 
-  onRemoveProduct(productId: number) {
-    this.removeProductFromCart.emit(productId);
-  }
+  constructor(private cartService:CartCustomerService){}
+ 
+
+  ngOnInit(): void {
+    this.getProductsCart();
+    
+ }
+ getProductsCart(){
+   this.cartService.getCart().subscribe((cart) => {
+     this.cart = cart;
+   });
+ }
+
+ removeProductFromCart(productId : number){
+  this.cartService.deleteProductCart(productId).subscribe(
+    () => this.getProductsCart()
+  )
+}
 
 }
 

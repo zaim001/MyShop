@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Category } from '../../models/category';
 import { CategoryVisitorService } from '../../shared/service/VisitorServices/category-visitor.service';
 import { CommonModule } from '@angular/common';
+import { CartCustomerService } from '../../shared/service/CustomerServices/cart-customer.service';
+import { Cart } from '../../models/cart';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,11 +18,12 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductDetailComponent implements OnInit {
 
+  cart : Cart | undefined;
   products : Product[] = [];
   categories : Category[] = [];
   product : Product | undefined;
 
-  constructor(private productService : ProductVisitorService, private route: ActivatedRoute,private categoryService: CategoryVisitorService){}
+  constructor(private productService : ProductVisitorService, private route: ActivatedRoute,private categoryService: CategoryVisitorService,private cartService : CartCustomerService,private keycloakService : KeycloakService){}
 
   ngOnInit(){
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -38,6 +42,19 @@ export class ProductDetailComponent implements OnInit {
         this.product = product;
         this.product.categoryname = this.getCategoryName(product.categoryId);
         });
+      }
+      addProductToCart(){
+        if(typeof(this.product) != "undefined" && this.hasRole('customer')){
+          this.cartService.addToCart(this.product).subscribe(
+            (data) => {this.cart = data
+              alert("Product Added Successfully");
+            },
+          )
+        }
+        else if (!this.hasRole('customer')) { alert("You have to login to add product to your cart")}
+      }
+      hasRole(role: string): boolean {
+        return this.keycloakService.getUserRoles().includes(role);
       }
   
       getCategoryName(categoryId: number): string {

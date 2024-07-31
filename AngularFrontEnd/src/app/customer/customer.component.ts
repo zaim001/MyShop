@@ -11,28 +11,6 @@ import { CartComponent } from "./cart/cart.component";
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss'
 })
-export class CustomerComponent implements OnInit {
-  cart: Cart | undefined;
-  
-
-  constructor(private cartService:CartCustomerService){}
-
-  ngOnInit(): void {
-    this.getProductsCart();
-    
- }
- getProductsCart(){
-   this.cartService.getCart().subscribe((cart) => {
-     this.cart = cart;
-   });
- }
-
- removeProductFromCart(productId : number){
-  this.cartService.deleteProductCart(productId).subscribe(
-    () => this.getProductsCart()
-  )
-}
-
-
+export class CustomerComponent{
  
 }

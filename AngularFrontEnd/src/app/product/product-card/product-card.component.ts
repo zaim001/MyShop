@@ -25,7 +25,8 @@ export class ProductCardComponent {
   addProductToCart(){
     if(typeof(this.product) != "undefined" && this.hasRole('customer')){
       this.cartService.addToCart(this.product).subscribe(
-        (data) => {this.cart = data},
+        (data) => {this.cart = data
+          alert("Product Added Successfully");},
       )
     }
     else if (!this.hasRole('customer')) { alert("You have to login to add product to your cart")}
