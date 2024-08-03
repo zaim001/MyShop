@@ -30,7 +30,7 @@ export class ShopComponent{
   constructor(
     private productService: ProductVisitorService,
     private categoryService: CategoryVisitorService,
-    private cartService: CartCustomerService,
+    
   ) {}
 
   ngOnInit() {

@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cart } from '../../models/cart';
 import { CartCustomerService } from '../../shared/service/CustomerServices/cart-customer.service';
 import { CommonModule } from '@angular/common';
+import { OrderService } from '../../shared/service/CustomerServices/order.service';
+import { Order } from '../../models/order';
 
 @Component({
   selector: 'app-cart',
@@ -13,8 +15,9 @@ import { CommonModule } from '@angular/common';
 export class CartComponent {
 
   cart: Cart | undefined;
+  order: Order | undefined;
 
-  constructor(private cartService:CartCustomerService){}
+  constructor(private cartService:CartCustomerService,private orderService : OrderService){}
  
 
   ngOnInit(): void {
@@ -31,6 +34,18 @@ export class CartComponent {
   this.cartService.deleteProductCart(productId).subscribe(
     () => this.getProductsCart()
   )
+}
+placeOrder(): void {
+  this.orderService.checkout().subscribe(
+    (order) => {
+      this.order = order;
+      this.getProductsCart(); // Refresh the cart after placing order
+    },
+    (error) => {
+      console.error('Error placing order', error);
+      // Handle error (e.g., show an error message)
+    }
+  );
 }
 
 }

@@ -1,7 +1,9 @@
-import { Product } from "./product";
+import { OrderItem } from "./orderItem";
 
 export interface Order {
     id: number;
-    products: Product[];
-    total: number;
+    items: OrderItem[];
+    totalAmount: number;
+    orderDate : string;
+    status : string;
   }

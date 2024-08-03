@@ -1,1 +1,31 @@
-<p>order-history works!</p>
+<div class="container">
+    <h1>Order History</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Order #</th>
+          <th>Date</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of orders; track order.id) {
+            <tr>
+                <td>{{order.id}}</td>
+                <td>{{order.orderDate | date:'short'}}</td>
+                <td>{{order.totalAmount | currency}}</td>
+                <td>{{order.status}}</td>
+                <td>
+                  <button class="btn btn-sm btn-primary" >View Details</button>
+                  <button class="btn btn-sm btn-secondary">Cancel Order</button>
+                </td>
+              </tr>
+        }
+        
+      </tbody>
+    </table>
+  </div>
+
+  
