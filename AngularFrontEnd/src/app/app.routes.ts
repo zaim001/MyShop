@@ -14,6 +14,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { ProfileComponent } from './customer/profile/profile.component';
 import { OrderHistoryComponent } from './customer/order-history/order-history.component';
 import { CartComponent } from './customer/cart/cart.component';
+import { SuccessComponent } from './customer/success/success.component';
 
 
 
@@ -55,6 +56,7 @@ export const routes: Routes = [
         { path: 'cart', component: CartComponent,  canActivate: [AuthGuard],data: { roles: ['customer'] } },
         { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],data: { roles: ['customer'] } },
         { path: 'order-history', component: OrderHistoryComponent, canActivate: [AuthGuard],data: { roles: ['customer'] } },
+        { path: 'success', component: SuccessComponent, canActivate: [AuthGuard],data: { roles: ['customer'] } },
       ]
     },
     {

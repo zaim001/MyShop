@@ -27,5 +27,6 @@ export class OrderHistoryComponent implements OnInit {
       (orders) => {this.orders = orders}
     )
   }
+  
 
 }

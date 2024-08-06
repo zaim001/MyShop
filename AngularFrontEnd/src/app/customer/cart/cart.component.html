@@ -29,10 +29,10 @@
                         {{item.name}}
                       </td>
                       <td>
-                        <input type="number" value="2" class="form-control">
+                        <input type="number" value="1" class="form-control" disabled>
                       </td>
-                      <td>$19.99</td>
-                      <td>$39.98</td>
+                      <td>${{item.price}}</td>
+                      <td>${{item.price}}</td>
                       <td>
                         <button class="btn btn-danger btn-sm" *ngIf="item.id" (click)="removeProductFromCart(item.id)">
                           <i class="fa fa-trash"></i>
@@ -47,13 +47,22 @@
         <!-- Cart Summary -->
         <div class="card">
           <div class="card-body">
+            @for (order of orders; track order) {}
             <h5>Cart Summary</h5>
-            <p>Subtotal: $49.97</p>
-            <p>Tax (8%): $3.99</p>
-            <p>Total: $53.96</p>
-            <button class="btn btn-primary btn-block" (click)="placeOrder()">Checkout</button>
+            <p>Subtotal: $x</p>
+            <p>Tax (x%): $x</p>
+            @for (item of cart?.products; track cart?.products){
+              <p>Total: ${{item.price}}</p>
+            }
+          
+            <form id="payment-form" (submit)="placeOrder($event)">
+              <div id="card-element" class="form-control"></div>
+              <br>
+              <button type="submit" class="btn btn-primary btn-block">Checkout</button>
+            </form>
+            <div *ngIf="stripeError" class="alert alert-danger">{{ stripeError }}</div>            
           </div>
-        </div>
+        </div>  
       </div>
     </div>
   </div>

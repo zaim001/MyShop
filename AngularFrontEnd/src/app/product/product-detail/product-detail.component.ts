@@ -22,6 +22,7 @@ export class ProductDetailComponent implements OnInit {
   products : Product[] = [];
   categories : Category[] = [];
   product : Product | undefined;
+  showModal : boolean = false;
 
   constructor(private productService : ProductVisitorService, private route: ActivatedRoute,private categoryService: CategoryVisitorService,private cartService : CartCustomerService,private keycloakService : KeycloakService){}
 
@@ -46,8 +47,8 @@ export class ProductDetailComponent implements OnInit {
       addProductToCart(){
         if(typeof(this.product) != "undefined" && this.hasRole('customer')){
           this.cartService.addToCart(this.product).subscribe(
-            (data) => {this.cart = data
-              alert("Product Added Successfully");
+            (data) => {this.cart = data;
+              this.showModal = true;
             },
           )
         }
@@ -87,7 +88,11 @@ export class ProductDetailComponent implements OnInit {
       else {
         return 0;
       }
-
     }
+
+    closeModal(){
+      this.showModal = false;
+    }
+
 
 }

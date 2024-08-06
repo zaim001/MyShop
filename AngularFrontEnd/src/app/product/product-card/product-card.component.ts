@@ -16,6 +16,7 @@ import { KeycloakService } from 'keycloak-angular';
 export class ProductCardComponent {
   @Input() product! : Product;
   cart: Cart | null = null;
+  showModal : boolean = false
  
  
 
@@ -26,7 +27,7 @@ export class ProductCardComponent {
     if(typeof(this.product) != "undefined" && this.hasRole('customer')){
       this.cartService.addToCart(this.product).subscribe(
         (data) => {this.cart = data
-          alert("Product Added Successfully");},
+          this.showModal = true;},
       )
     }
     else if (!this.hasRole('customer')) { alert("You have to login to add product to your cart")}
@@ -45,5 +46,8 @@ export class ProductCardComponent {
 
   get starCount(): number {
     return Math.floor(this.product.rating) + (this.hasHalfStar ? 1 : 0);
+  }
+  closeModal(){
+    this.showModal = false;
   }
 }

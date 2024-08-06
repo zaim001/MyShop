@@ -4,6 +4,8 @@ import { CartCustomerService } from '../../shared/service/CustomerServices/cart-
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../shared/service/CustomerServices/order.service';
 import { Order } from '../../models/order';
+import { StripeService } from '../../shared/service/CustomerServices/stripe.service';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-cart',
@@ -16,8 +18,12 @@ export class CartComponent {
 
   cart: Cart | undefined;
   order: Order | undefined;
+  orders : Order[] = [];
+  products : Product[] = [];
+  stripeError: string | null = null;
 
-  constructor(private cartService:CartCustomerService,private orderService : OrderService){}
+
+  constructor(private cartService:CartCustomerService,private orderService : OrderService, private stripeService : StripeService){}
  
 
   ngOnInit(): void {
@@ -29,23 +35,38 @@ export class CartComponent {
      this.cart = cart;
    });
  }
+ totalCartPrice(){
+  this.cart?.products.reduce;
+ }
 
  removeProductFromCart(productId : number){
   this.cartService.deleteProductCart(productId).subscribe(
     () => this.getProductsCart()
   )
 }
-placeOrder(): void {
-  this.orderService.checkout().subscribe(
-    (order) => {
-      this.order = order;
-      this.getProductsCart(); // Refresh the cart after placing order
-    },
-    (error) => {
-      console.error('Error placing order', error);
-      // Handle error (e.g., show an error message)
+async placeOrder(event: Event): Promise<void> {
+  event.preventDefault(); // Prevent default form submission
+
+  try {
+    const paymentMethod = await this.stripeService.createPaymentMethod();
+    if (paymentMethod) {
+      this.orderService.checkout(paymentMethod.id).subscribe(
+        () => {
+          this.getProductsCart();
+          window.location.href = 'customer/success'; // Redirect to success page
+        },
+        (error) => {
+          console.error('Error placing order', error);
+          this.stripeError = 'Payment failed. Please try again.';
+        }
+      );
+    } else {
+      this.stripeError = 'Failed to create payment method.';
     }
-  );
+  } catch (error) {
+    console.error('Error creating payment method', error);
+    this.stripeError = 'Payment failed. Please try again.';
+  }
 }
 
 }

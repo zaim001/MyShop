@@ -8,4 +8,5 @@ public interface OrderService {
 
 	Order checkout(String userId);
 	List<Order> getOrdersForUser(String userId);
+	void updateOrderStatus(Long orderId, String status);
 }

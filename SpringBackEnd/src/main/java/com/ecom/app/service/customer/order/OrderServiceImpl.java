@@ -58,4 +58,9 @@ public class OrderServiceImpl implements OrderService {
 	    public List<Order> getOrdersForUser(String userId) {
 	        return orderRepo.findByUserId(userId);
 	    }
+	    public void updateOrderStatus(Long orderId, String status) {
+	        Order order = orderRepo.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+	        order.setStatus(status);
+	        orderRepo.save(order);
+	    }
 }
