@@ -33,5 +33,11 @@ public class VisitorProductController {
         ProductDto productDto = vps.getProductById(id);
         return ResponseEntity.ok(productDto);
     }
+    @GetMapping("search/{name}")
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+    public ResponseEntity<List<ProductDto>> getAllProductByNam(@PathVariable String name) {
+    	List<ProductDto> productsDtos = vps.findAllByNameContaining(name);
+        return ResponseEntity.ok(productsDtos);
+    }
 	
 }

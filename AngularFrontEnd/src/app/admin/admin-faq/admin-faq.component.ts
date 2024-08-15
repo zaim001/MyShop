@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Faq } from '../../models/faq';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FaqService } from '../../shared/service/AdminServices/faq.service';
 
@@ -37,17 +37,19 @@ export class AdminFaqComponent implements OnInit {
     expanded : true
   };
 
-  onAddFaq() {
-    this.faqService.createFaq(this.newFaq).subscribe(() => {
-      this.loadFaqs();
-      this.newFaq = {
-        question : '',
-        answer :'',
-        expanded : true
-      }
-     
-    });
+  onAddFaq(form: NgForm) {
+    if (form.valid) {
+      this.faqService.createFaq(this.newFaq).subscribe(() => {
+        this.loadFaqs();
+        this.newFaq = {
+          question : '',
+          answer :'',
+          expanded : true
+        }
+      });
+    }
   }
+
 
   OnDeleteFaq(id : number){
     this.faqService.deletFaq(id).subscribe(

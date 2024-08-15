@@ -15,6 +15,6 @@ public interface ProductService {
 	
 	Product updateProduct(Long id, ProductDto productDto);
 	
-	List<ProductDto> findAllByNameContaining(String title);
+
 
 }

@@ -1,14 +1,21 @@
-<h3>Add New Product</h3>
-<form (ngSubmit)="onAddFaq()">
+<h3>Add New Faq</h3>
+<form #faqForm="ngForm" (ngSubmit)="onAddFaq(faqForm)">
   <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
-    <input [(ngModel)]="newFaq.question" name="question" id="question" class="form-control" placeholder="Question" required>
+    <label for="question" class="form-label">Question</label>
+    <input [(ngModel)]="newFaq.question" name="question" id="question" class="form-control" placeholder="Question" required #questionInput="ngModel">
+    <div *ngIf="questionInput.invalid && (questionInput.dirty || questionInput.touched)" class="alert alert-danger">
+      <div *ngIf="questionInput.errors?.['required']">Question is required.</div>
+    </div>
   </div>
   <div class="mb-3">
-    <label for="description" class="form-label">Description</label>
-    <input [(ngModel)]="newFaq.answer" name="answer" id="answer" class="form-control" placeholder="Answer">
+    <label for="answer" class="form-label">Answer</label>
+    <input [(ngModel)]="newFaq.answer" name="answer" id="answer" class="form-control" placeholder="Answer" required minlength="5" #answerInput="ngModel">
+    <div *ngIf="answerInput.invalid && (answerInput.dirty || answerInput.touched)" class="alert alert-danger">
+      <div *ngIf="answerInput.errors?.['required']">Answer is required.</div>
+      <div *ngIf="answerInput.errors?.['minlength']">Answer must be at least 5 characters long.</div>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Add Faq</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!faqForm.form.valid">Add Faq</button>
 </form>
 
 <div class="container-fluid">

@@ -9,5 +9,6 @@ public interface VisitorProductService {
 	
 	List<ProductDto> getAllProducts();
 	ProductDto getProductById(Long id);
+	List<ProductDto> findAllByNameContaining(String name);
 
 }

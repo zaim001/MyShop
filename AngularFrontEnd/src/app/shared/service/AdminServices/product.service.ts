@@ -23,8 +23,6 @@ export class ProductService {
   updateProduct(id: number, product: Product): Observable<Product> {
     return this.http.put<Product>(`http://localhost:8081/api/admin/products/${id}`, product);
   }
-  searchProduct(title : string): Observable<Product[]>{
-    return this.http.get<Product[]>(`http://localhost:8081/api/admin/search/${title}`);
-  }
+
   
 }

@@ -41,6 +41,7 @@ public class AdminProductController {
     }
 
     @GetMapping("/products")
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
@@ -57,11 +58,6 @@ public class AdminProductController {
         Product updatedProduct = productService.updateProduct(id, productDto);
         return ResponseEntity.ok(updatedProduct);
     }
-    @GetMapping("search/{name}")
-    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-    public ResponseEntity<List<ProductDto>> getAllProductByNam(@PathVariable String name) {
-    	List<ProductDto> productsDtos = productService.findAllByNameContaining(name);
-        return ResponseEntity.ok(productsDtos);
-    }
+
     
 }

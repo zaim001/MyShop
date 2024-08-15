@@ -37,4 +37,9 @@ public class VisitorProductServiceImpl implements VisitorProductService{
 	        dto.setCategoryName(product.getCategory().getName());
 	        return dto;
 	    }
+	    public List<ProductDto> findAllByNameContaining(String name){
+	    	List<Product> products = productRepo.findAllByNameContaining(name);
+	    	return products.stream().map(this::convertToDto).collect(Collectors.toList());
+	    	
+	    }
 }

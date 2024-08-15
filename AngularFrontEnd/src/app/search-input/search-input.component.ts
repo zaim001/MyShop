@@ -11,9 +11,6 @@ import { ProductService } from '../shared/service/AdminServices/product.service'
 })
 export class SearchInputComponent {
 
-
-  constructor(private productService: ProductService) {}
-
   @Output() search = new EventEmitter<string>();
   searchTerm: string = '';
 

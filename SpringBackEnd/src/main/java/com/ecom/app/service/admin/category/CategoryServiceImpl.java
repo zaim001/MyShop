@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.ecom.app.dto.CategoryDto;
 import com.ecom.app.model.Category;
-import com.ecom.app.model.Faq;
+
 import com.ecom.app.repo.CategoryRepo;
 
 @Service

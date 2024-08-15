@@ -16,15 +16,16 @@ public class Product {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name")
+   
     private String name;
+    
 	@Column(name="product_description")
 	private String description;
-    @Column(name = "price")
+   
     private Double price;
-    @Column(name = "rating")
+   
     private Double rating;
-    @Column(name = "product_image")
+ 
     private String product_image;
     @ManyToOne
     @JoinColumn(name = "cart_id")

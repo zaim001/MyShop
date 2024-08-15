@@ -1,7 +1,7 @@
 {
   "realm" : "myshop-realm",
   "users" : [ {
-    "id" : "573d78cd-88bf-48f1-94ce-93c26d63b127",
+    
     "username" : "badr",
     "firstName" : "Badr Eddine",
     "lastName" : "Zaim",
@@ -11,7 +11,7 @@
     "enabled" : true,
     "totp" : false,
     "credentials" : [ {
-      "id" : "8b354101-e5d9-444f-898a-f0cd40a897ab",
+      
       "type" : "password",
       "userLabel" : "My password",
       "createdDate" : 1719838238443,
@@ -24,7 +24,7 @@
     "notBefore" : 0,
     "groups" : [ "/admins" ]
   }, {
-    "id" : "bccda701-ad45-4791-bd15-2dafb9a3e363",
+    
     "username" : "cold_hand",
     "firstName" : "Badr Eddine",
     "lastName" : "Zaim",
@@ -34,7 +34,7 @@
     "enabled" : true,
     "totp" : false,
     "credentials" : [ {
-      "id" : "056d80c4-4abd-4dda-b197-8d33e84cce63",
+      
       "type" : "password",
       "userLabel" : "My password",
       "createdDate" : 1719837434973,
@@ -47,14 +47,14 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
-    "id" : "4abf5439-6125-47d7-b00e-d61aee542adf",
+    
     "username" : "customer",
     "emailVerified" : true,
     "createdTimestamp" : 1720457554596,
     "enabled" : true,
     "totp" : false,
     "credentials" : [ {
-      "id" : "d9eb5d15-8660-487c-8f98-faa535b98f44",
+      
       "type" : "password",
       "userLabel" : "My password",
       "createdDate" : 1720457588475,
@@ -67,14 +67,14 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
-    "id" : "29b402a0-1eaf-4d84-a17b-b298e9b4b268",
+    
     "username" : "customer2",
     "emailVerified" : true,
     "createdTimestamp" : 1722188138053,
     "enabled" : true,
     "totp" : false,
     "credentials" : [ {
-      "id" : "09f0a03c-be4c-42f1-b3e4-3ec695f11692",
+      
       "type" : "password",
       "userLabel" : "My password",
       "createdDate" : 1722188157974,
@@ -87,7 +87,7 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
-    "id" : "dae47d70-c7c0-49de-9aab-1a13e6fc97f5",
+    
     "username" : "customer3",
     "firstName" : "alan",
     "lastName" : "pau",
@@ -97,7 +97,7 @@
     "enabled" : true,
     "totp" : false,
     "credentials" : [ {
-      "id" : "1b136ae0-34c5-46fd-a593-8499a8087ac1",
+      
       "type" : "password",
       "createdDate" : 1722705340768,
       "secretData" : "{\"value\":\"lukd6eXx8aepQP+hYzd8WcvD+zkhEcnq4noU4jhTcb0=\",\"salt\":\"sQszixOgPXgXnFtxxkpEVg==\",\"additionalParameters\":{}}",

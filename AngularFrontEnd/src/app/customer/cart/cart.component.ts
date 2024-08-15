@@ -26,7 +26,7 @@ export class CartComponent {
   constructor(private cartService:CartCustomerService,private orderService : OrderService, private stripeService : StripeService){}
  
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getProductsCart();
     
  }
@@ -35,9 +35,9 @@ export class CartComponent {
      this.cart = cart;
    });
  }
- totalCartPrice(){
-  this.cart?.products.reduce;
- }
+ totalCartPrice(): number {
+  return this.cart?.products.reduce((sum, product) => sum + product.price, 0) || 0;
+}
 
  removeProductFromCart(productId : number){
   this.cartService.deleteProductCart(productId).subscribe(
@@ -53,7 +53,7 @@ async placeOrder(event: Event): Promise<void> {
       this.orderService.checkout(paymentMethod.id).subscribe(
         () => {
           this.getProductsCart();
-          window.location.href = 'customer/success'; // Redirect to success page
+          window.location.href = 'customer/success'; 
         },
         (error) => {
           console.error('Error placing order', error);

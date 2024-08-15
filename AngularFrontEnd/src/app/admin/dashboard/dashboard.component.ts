@@ -32,8 +32,8 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loadProducts();
     this.loadCategories();
+    this.loadProducts();
     this.loadFaqs()
   }
 

@@ -8,8 +8,6 @@ import java.util.Collection;
 
 public class CustomJwt extends JwtAuthenticationToken {
 
- 
-
 	/**
 	 * 
 	 */

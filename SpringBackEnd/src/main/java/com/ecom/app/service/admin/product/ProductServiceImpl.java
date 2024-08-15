@@ -86,12 +86,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepo.save(existingProduct);
     }
     
-    public List<ProductDto> findAllByNameContaining(String name){
-    	List<Product> products = productRepo.findAllByNameContaining(name);
-    	return products.stream().map(this::convertToDto).collect(Collectors.toList());
-    	
 
-    }
 	
 
 }

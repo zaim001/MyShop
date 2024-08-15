@@ -33,8 +33,7 @@
         @if (editingCat === category.id) {
           <input [(ngModel)]="category.cat_image" (blur)="OnUpdateCategory(category)" (keyup.enter)="OnUpdateCategory(category)">
         } @else {
-          {{category.cat_image}}
-          <img [src]="category.cat_image">
+          <td>{{category.cat_image}}</td>
         }
       </td>
       <td>

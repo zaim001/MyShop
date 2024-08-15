@@ -18,4 +18,7 @@ export class ProductVisitorService {
   getProductById(id : number) : Observable<Product>{
     return this.http.get<Product>(`${this.apiUrl}/products/${id}`)
   }
+  searchProduct(title : string): Observable<Product[]>{
+    return this.http.get<Product[]>(`http://localhost:8081/api/visitor/search/${title}`);
+  }
 }
