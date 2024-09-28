@@ -1,68 +1,64 @@
-#tempaltemo_footer {
-    background-color: #212934;
-    padding-top: 50px;
-    padding-bottom: 20px;
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+body {
+    font-family: 'Muli', sans-serif;
+    height: 100% !important;
+    background-color: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important
 }
 
-#tempaltemo_footer .logo {
-    font-weight: 500;
-    color: #59ab6e;
+
+
+h5 {
+    font-size: calc(20px + (28 - 20) * ((100vw - 360px) / (1600 - 360))) !important
 }
 
-#tempaltemo_footer ul.footer-link-list li {
-    padding-top: 10px;
+.fa {
+    cursor: pointer;
+    font-size: 21px;
+    margin: 5px 10px 5px 10px !important
 }
 
-#tempaltemo_footer ul.footer-link-list li a {
-    color: #cfd6e1;
-    text-decoration: none;
+button {
+    font-size: calc(12px + (13 - 12) * ((100vw - 360px) / (1600 - 320))) !important;
+    padding-left: calc(20px + (28 - 20) * ((100vw - 360px) / (1600 - 360))) !important;
+    padding-right: calc(20px + (28 - 20) * ((100vw - 360px) / (1600 - 360))) !important;
+    padding-top: calc(10px + (12 - 10) * ((100vw - 360px) / (1600 - 360))) !important;
+    padding-bottom: calc(10px + (12 - 10) * ((100vw - 360px) / (1600 - 360))) !important
 }
 
-#tempaltemo_footer ul.footer-link-list li a:hover {
-    color: #68bb7d;
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
 }
 
-#tempaltemo_footer .footer-icons li {
-    width: 2.6em;
-    height: 2.6em;
-    line-height: 2.6em;
-    border: 1px solid #e8e8e8;
-    border-radius: 50%;
-    margin-right: 10px;
+li {
+    margin-top: 10px;
+    margin-bottom: 10px
 }
 
-#tempaltemo_footer .footer-icons li a {
-    color: #dcdde1;
-    text-decoration: none;
+
+li:first-child {
+    font-size: 21px !important;
+    font-weight: bold;
+    margin-bottom: calc(40px + (48 - 40) * ((100vw - 360px) / (1600 - 360))) !important;
+    color: #757575 !important
 }
 
-#tempaltemo_footer .footer-icons li:hover {
-    background-color: #cfd6e1;
-    transition: 0.5s;
+footer {
+    color: #757575 !important
 }
 
-#tempaltemo_footer .footer-icons li:hover i {
-    color: #212934;
-    transition: 0.5s;
+.social {
+    position: relative;
+    left: -10px
 }
 
-#tempaltemo_footer .input-group-text {
-    background-color: #59ab6e;
-    border: none;
-    color: #fff;
-}
-
-#tempaltemo_footer .input-group-text:hover {
-    background-color: #68bb7d;
-}
-
-#tempaltemo_footer .bg-black {
-    background-color: #1d242d;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-#tempaltemo_footer .bg-black p {
-    color: #cfd6e1;
-    margin-bottom: 0;
+.cursor-pointer {
+    cursor: pointer !important;
+    color: green;
+    font-weight: bold
 }
