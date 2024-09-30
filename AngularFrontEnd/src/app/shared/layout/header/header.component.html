@@ -76,6 +76,9 @@
                         </a>
                     }
                     @if (hasRole('customer')) {
+                        <a class="nav-icon position-relative text-decoration-none" style="cursor: pointer;" (click)="logout()">
+                            <button class="btn btn-danger" >MyOrders</button>
+                        </a>
                         <a href="/customer/profile" class="nav-link link-dark">
                             <i class="fa fa-fw fa-user text-dark mr-3"></i>
                             Customer Dashboard
